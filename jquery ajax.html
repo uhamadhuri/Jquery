@@ -1,0 +1,61 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>username</th>
+                <th>email</th>
+                <th>address</th>
+                <th>phone</th>
+                <th>company</th>
+            </tr>
+
+        </thead>
+        <tbody class="body1">
+
+        </tbody>
+
+    </table>
+    <button class="btn btn-info">Click Me</button>
+</div>
+<script>
+  $(".btn").click(function(){
+    $.ajax({
+    url:"https://jsonplaceholder.typicode.com/users",
+    method:"GET",
+    success:function(res){
+         //console.log(res)
+         prepareList(res)
+        
+    },
+    "error":function(err){
+        alert("not ok")
+    }
+})
+})
+function prepareList(users){
+    users.forEach(function(obj,index){
+        var list="<tr>"+
+                "<td>"+obj.id+"</td>"+
+              "<td>"+obj.name+"</td>"+
+              "<td>"+obj.username+"</td>"+
+              "<td>"+obj.email+"</td>"+
+              "<td>"+obj.address.street+"</td>"+
+              "<td>"+obj.phone+"</td>"+
+              "<td>"+"<button class='btn btn-success text-white'>Edit</button>"+"</td>"+
+          "</tr>";
+          $(".body1").append(list)
+
+    })
+}
+           
+</script>
